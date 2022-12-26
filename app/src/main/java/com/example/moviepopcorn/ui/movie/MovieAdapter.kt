@@ -50,7 +50,6 @@ class MovieAdapter(private val listener : OnItemClickListener) : PagingDataAdapt
                     .into(ivPoster)
                 tvTitle.text = movie.original_title
                 tvDesc.text = movie.overview
-                tvPopularity.text = movie.popularity
                 tvRating.text = movie.vote_average
             }
         }

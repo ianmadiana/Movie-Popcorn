@@ -81,6 +81,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details){
 
             tvDescription.text = movie.overview
             tvMovieTitle.text = movie.original_title
+            tvRating.text = movie.vote_average
+            tvPopularity.text = movie.popularity
 
             toggleFavorite.setOnClickListener {
                 _isChecked = !_isChecked

@@ -49,6 +49,7 @@ class MovieAdapter(private val listener : OnItemClickListener) : PagingDataAdapt
                     .error(R.drawable.ic_error_34_512)
                     .into(ivPoster)
                 tvTitle.text = movie.original_title
+                tvDesc.text = movie.overview
             }
         }
     }

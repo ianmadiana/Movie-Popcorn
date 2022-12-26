@@ -40,6 +40,8 @@
             android:ellipsize="end"
             tools:text="Judul Movie" />
 
+
+
         <TextView
             android:id="@+id/tv_desc"
             android:layout_width="match_parent"

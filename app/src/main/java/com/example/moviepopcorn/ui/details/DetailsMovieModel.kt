@@ -1,6 +1,5 @@
 package com.example.moviepopcorn.ui.details
 
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import com.example.moviepopcorn.data.local.FavoriteMovie
@@ -35,5 +34,4 @@ class DetailsMovieModel @ViewModelInject constructor(
             repository.removeFromFavorite(id)
         }
     }
-
 }

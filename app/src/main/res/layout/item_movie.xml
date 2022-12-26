@@ -33,7 +33,6 @@
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
             android:layout_toEndOf="@id/iv_poster"
-            android:layout_toRightOf="@id/iv_poster"
             android:ellipsize="end"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -44,9 +43,9 @@
             android:id="@+id/img_rating"
             android:layout_width="30dp"
             android:layout_height="19dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginLeft="16dp"
             android:layout_below="@+id/tv_title"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="1dp"
             android:layout_toEndOf="@id/iv_poster"
             card_view:srcCompat="@drawable/ic_star_86960" />
 
@@ -74,7 +73,6 @@
             android:layout_marginTop="7dp"
             android:layout_marginRight="16dp"
             android:layout_toEndOf="@id/iv_poster"
-            android:layout_toRightOf="@id/iv_poster"
             android:ellipsize="end"
             android:maxLines="5"
             tools:text="Deskripsi Movie" />
@@ -85,9 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_toEndOf="@id/iv_poster"
-            android:layout_toRightOf="@id/iv_poster"
             android:orientation="horizontal" />
 
     </RelativeLayout>

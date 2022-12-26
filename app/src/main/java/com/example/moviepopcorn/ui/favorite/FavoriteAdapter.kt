@@ -41,7 +41,6 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
                 binding.root.setOnClickListener { onItemClickCallback?.onItemClick(favoriteMovie) }
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {

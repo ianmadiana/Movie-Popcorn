@@ -9,12 +9,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+//View Model untuk details
+//class ini akan mewarisi class view model
 class DetailsMovieModel @ViewModelInject constructor(
     private val repository : FavoriteMovieRepository
 ) : ViewModel(){
     fun addToFavorite(movie: Movie){
+//        coroutine untuk background
         CoroutineScope(Dispatchers.IO).launch {
             repository.addToFavorite(
+//                memasukkan object favorite movie
                 FavoriteMovie(
                     movie.id,
                     movie.original_title,
@@ -27,8 +31,10 @@ class DetailsMovieModel @ViewModelInject constructor(
         }
     }
 
+//    fungsi untuk cek movie berdasarkan id
     suspend fun checkMovie(id: String) = repository.checkMovie(id)
 
+//    fungsi untuk hapus movie berdasarkan id
     fun removeFromFavorite(id: String){
         CoroutineScope(Dispatchers.IO).launch {
             repository.removeFromFavorite(id)

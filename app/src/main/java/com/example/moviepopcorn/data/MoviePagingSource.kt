@@ -6,8 +6,11 @@ import com.example.moviepopcorn.data.model.Movie
 import retrofit2.HttpException
 import java.io.IOException
 
+//posisi page awal
 private const val STARTING_PAGE_INDEX = 1
 
+//class MoviePagingSource digunakan untuk mengambil data secara bertahap
+//dari sumber data (API)
 class MoviePagingSource (
     private val movieApi: MovieApi,
     private val query: String?
@@ -16,8 +19,10 @@ class MoviePagingSource (
 
 
         return try {
+//          posisi awal page yaitu 1
             val position = params.key ?: STARTING_PAGE_INDEX
-            val response = if (query!=null) movieApi.searchMovies(query,position) else movieApi.getNowPlayingMovies(position)
+            val response = if (query!=null) movieApi.searchMovies(query,position) else movieApi.getNowPlaying(position)
+//          menangkap results dari class MovieResponse
             val movies = response.results
 
             LoadResult.Page(

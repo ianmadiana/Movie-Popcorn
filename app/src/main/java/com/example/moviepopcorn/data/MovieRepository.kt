@@ -10,7 +10,10 @@ import javax.inject.Singleton
 @Singleton
 class MovieRepository @Inject constructor(private val movieApi: MovieApi){
 
-    fun getNowPlayingMovies() =
+//  fungsi untuk memanggil konten Now Playing dari API TMDB
+//  Page size yang akan diload dalam satu kali permintaan adalah 5 page
+//  Data ini berbentuk LiveData
+    fun getNowPlaying() =
         Pager(
             config = PagingConfig(
                 pageSize = 5,
@@ -20,6 +23,7 @@ class MovieRepository @Inject constructor(private val movieApi: MovieApi){
             pagingSourceFactory = {MoviePagingSource(movieApi,null)}
         ).liveData
 
+    //  fungsi untuk memanggil proses pencarian film di TMDB berdasarkan kata kunci string
     fun getSearchMovies(query: String) =
         Pager(
             config = PagingConfig(

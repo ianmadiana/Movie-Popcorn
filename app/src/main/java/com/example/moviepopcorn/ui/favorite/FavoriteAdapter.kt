@@ -10,12 +10,15 @@ import com.example.moviepopcorn.R
 import com.example.moviepopcorn.data.local.FavoriteMovie
 import com.example.moviepopcorn.databinding.ItemMovieBinding
 
+//class FavoriteAdapter akan meng-inherit atau mewarisi terhadap class RecyclerView
 class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
 
+//    variabel list dari favorite movie
     private lateinit var list : List<FavoriteMovie>
 
     private var onItemClickCallback: OnItemClickCallback? = null
 
+//
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
         this.onItemClickCallback = onItemClickCallback
     }
@@ -25,19 +28,23 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
         notifyDataSetChanged()
     }
 
+//  view holder
     inner class FavoriteViewHolder(private val binding: ItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(favoriteMovie: FavoriteMovie) {
             with(binding) {
 
+//              blok kode untuk layout menggunakan Glide digunakan sebagai image loader
                 Glide.with(itemView)
                     .load("${favoriteMovie.baseUrl}${favoriteMovie.poster_path}")
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_error24)
                     .into(ivPoster)
+                //blok kode untuk menampilkan data berupa judul, deskripsi dan rating
                 tvTitle.text = favoriteMovie.original_title
                 tvDesc.text = favoriteMovie.overview
+                tvRating.text = favoriteMovie.vote_average
                 binding.root.setOnClickListener { onItemClickCallback?.onItemClick(favoriteMovie) }
             }
         }

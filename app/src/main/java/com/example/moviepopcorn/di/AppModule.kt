@@ -13,10 +13,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+//modul untuk injeksi class agar mengurangi ketergantungan antar class
 @Module
 @InstallIn(ApplicationComponent::class)
 object AppModule {
 
+    //inject moviDB dan DAO
     @Singleton
     @Provides
     fun provideFavMovieDatabase(
@@ -31,6 +33,8 @@ object AppModule {
     @Provides
     fun provideFavMovieDao(db: FavoriteMovieDatabase) = db.getFavoriteMovieDao()
 
+//  retrofit object
+//  JSON diparsing menggunakan GSON
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit =
@@ -39,6 +43,7 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
+//  inject class MovieApi
     @Provides
     @Singleton
     fun provideMovieApi(retrofit: Retrofit): MovieApi =

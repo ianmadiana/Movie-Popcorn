@@ -22,18 +22,23 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+//class fragment untuk detail film
 @AndroidEntryPoint
 class DetailsFragment : Fragment(R.layout.fragment_details){
+//    variabel untuk menampung argumen
     private val args by navArgs<DetailsFragmentArgs>()
     private val viewModel by viewModels<DetailsMovieModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        data binding untuk fragment detail
         val binding = FragmentDetailsBinding.bind(view)
 
         binding.apply {
+//          variabel untuk menampung argumen movie
             val movie = args.movie
+//          library glide untuk menampilkan poster film
             Glide.with(this@DetailsFragment)
                 .load("${movie.baseUrl}${movie.poster_path}")
                 .error(R.drawable.ic_error_31_512)
@@ -48,6 +53,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details){
                         return false
                     }
 
+//                  objek ketika data sudah siap
                     override fun onResourceReady(
                         resource: Drawable?,
                         model: Any?,
@@ -62,9 +68,10 @@ class DetailsFragment : Fragment(R.layout.fragment_details){
                         tvRating.isVisible = true
                         return false
                     }
-
                 })
                 .into(ivMoviePoster)
+
+//          logic untuk bookmark/favorite apakah sudah diklik atau belum
             var _isChecked = false
             CoroutineScope(Dispatchers.IO).launch{
                 val count = viewModel.checkMovie(movie.id)
@@ -79,11 +86,13 @@ class DetailsFragment : Fragment(R.layout.fragment_details){
                 }
             }
 
+//          blok kode untuk menampilkan data di layout atau fragment
             tvDescription.text = movie.overview
             tvMovieTitle.text = movie.original_title
             tvRating.text = movie.vote_average
             tvPopularity.text = movie.popularity
 
+//          tombol untuk bookmark atau favorite
             toggleFavorite.setOnClickListener {
                 _isChecked = !_isChecked
                 if (_isChecked){

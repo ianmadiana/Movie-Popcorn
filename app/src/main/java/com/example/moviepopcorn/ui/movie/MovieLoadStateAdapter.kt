@@ -8,6 +8,7 @@ import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviepopcorn.databinding.MovieLoadStateFooterBinding
 
+//class untuk menghandle load state ketika data belum berhasil dimuat
 class MovieLoadStateAdapter(private val retry: ()-> Unit) : LoadStateAdapter<MovieLoadStateAdapter.LoadStateViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): LoadStateViewHolder {
@@ -21,6 +22,7 @@ class MovieLoadStateAdapter(private val retry: ()-> Unit) : LoadStateAdapter<Mov
 
     inner class LoadStateViewHolder(private val binding: MovieLoadStateFooterBinding) : RecyclerView.ViewHolder(binding.root){
 
+//      constructor
         init {
             binding.btnRetry.setOnClickListener {
                 retry.invoke()

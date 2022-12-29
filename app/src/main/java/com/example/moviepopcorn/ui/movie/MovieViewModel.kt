@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.example.moviepopcorn.data.MovieRepository
 
+//class view model untuk movie
 class MovieViewModel @ViewModelInject constructor(
     private val repository: MovieRepository,
     @Assisted state: SavedStateHandle) : ViewModel(){
@@ -23,10 +24,11 @@ class MovieViewModel @ViewModelInject constructor(
         if (!query.isEmpty()){
             repository.getSearchMovies(query)
         }else{
-            repository.getNowPlayingMovies().cachedIn(viewModelScope)
+            repository.getNowPlaying().cachedIn(viewModelScope)
         }
     }
 
+//    fungsi untuk mencari film berdasarkan query di state
     fun searchMovies(query: String){
         currentQuery.value = query
     }

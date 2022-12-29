@@ -13,15 +13,20 @@ import com.example.moviepopcorn.databinding.FragmentFavoriteBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+//class favorite fragment akan meng-implement terhadap class fragment
+//dimasukkan argumen di Fragment berupa layout fragment favorite
 class FavoriteFragment : Fragment(R.layout.fragment_favorite){
     private val viewModel by viewModels<FavoriteViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//      data binding untuk mengikat data ke bagian UI
         val binding = FragmentFavoriteBinding.bind(view)
 
         val adapter = FavoriteAdapter()
 
+//      observer untuk mengamati LiveData
         viewModel.movies.observe(viewLifecycleOwner){
             adapter.setMovieList(it)
             binding.apply {
@@ -29,7 +34,6 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite){
                 rvMovie.adapter = adapter
             }
         }
-
 
         adapter.setOnItemClickCallback(object : FavoriteAdapter.OnItemClickCallback{
             override fun onItemClick(favoriteMovie: FavoriteMovie) {
